@@ -1,0 +1,25 @@
+version: '3.4'
+
+services:
+  aspnetcore5-with-nextjs:
+    image: ${DOCKER_REGISTRY-}aspnetcore5withnextjs
+    build:
+      context: .
+      dockerfile: aspnetcore5-with-nextjs/Dockerfile
+  mssql:
+    build:
+      context: ./mssql/
+    image: mssql
+    ports:
+      - 1433:1433
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=password
+      - MSSQL_PID=Express # SQL Serverのエディションまたはプロダクトキー
+      - MSSQL_LCID=1041 # ロケールID 日本語 (https://www.ryadel.com/en/microsoft-windows-lcid-list-decimal-and-hex-all-locale-codes-ids/)
+      - MSSQL_COLLATION=Japanese_CI_AS # 照合順
+    volumes:
+      - ./mssql/initdb.d:/docker-entrypoint-initdb.d
+      - ./mssql/data:/var/opt/mssql/data
+      - ./mssql/log:/var/opt/mssql/log
+      - ./mssql/secrets:/var/opt/mssql/sec

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Default</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ItemType>GenericProject</ItemType>
+    <ProjectGuid>{3A94FF4F-A948-4CB7-B7AF-EDDA79681D0A}</ProjectGuid>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Default|AnyCPU' ">
+    <OutputPath>.\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="data\" />
+    <Folder Include="log\" />
+    <Folder Include="secrets\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="initdb.d\Demo.dbo.DEMO.csv" />
+    <None Include="initdb.d\import-data.sh" />
+    <None Include="initdb.d\entrypoint.sh" />
+    <None Include="initdb.d\demo.sql" />
+    <None Include="Dockerfile" />
+  </ItemGroup>
+</Project>
